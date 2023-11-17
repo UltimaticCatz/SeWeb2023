@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Flashcard Project Wesbsite
+        </title>
+        <link href="{{url_for('static', path='styles/flashcard_style.css')}}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="top-bar">
+            <p><img src="{{url_for('static',path = 'images/se-logo.png')}}"></p>
+            <nav>
+                <ul>
+                    <a href="/"><li>Home</li></a>
+                    <a href="/flashcard"><li>Flashcard</li></a>
+                    <a href="/forum"><li>Forum</li></a>
+                    <a href="/chat"><li>Chat</li></a>
+                    <a href="/office-of-the-registra"><li>Office of the Registra</li></a>
+                </ul>
+            </nav>
+        </div>
+        <h1 style="margin-top:15vh;">SE Flashcard</h1>
+        <div class="flashcardHolder">
+            <h2 id="flashcardCount">Flashcard Count: 0</h2>
+            <div>
+                <div class="flip-card flashcardDisplayCenter" id="flashcardPlace">
+                    
+                </div>
+            </div>
+        </div>
+        <br>
+        <div>
+            <div class="createFlashcardButton" id="createButton">
+                Create a Flashcard
+            </div>
+            <div class="createFlashcardButton" id="clearButton">
+                Clear Collection
+            </div>
+        </div>
+        <br>
+        <div id="termAndDefinitionArea"></div>
+        
+        
+        
+    </body>
+    <script>
+
+        var flashcardCount = 0;
+
+
+        async function addToDB() {
+            var term1 = document.getElementById("term");
+            var question = term1.value;
+            var definition1 = document.getElementById("definition");
+            var answer = definition1.value;
+            
+            var formData = new FormData();
+            formData.append('term', question);
+            formData.append('definition', answer);
+
+            var response = await fetch('/save_data', {
+                method: 'POST',
+                body: formData,
+            });
+        }
+
+        async function scrollFlashcard(event) {
+            if(event.keyCode == 37 || event.keyCode == 40){
+                var response = await fetch('/prev_card', {
+                    method: 'GET',
+                });
+
+                var flashcardData = await response.json();
+
+                document.getElementById("mainDisplayCard").innerText = flashcardData.term;
+                document.getElementById("backDisplayCard").innerText = flashcardData.definition;
+                document.getElementById("flashcardCount").innerText - "Flashcard Count: " + flashcardData.flashcardCount;
+            } else if(event.keyCode == 39 || event.keyCode == 38){
+                var response = await fetch('/next_card', {
+                    method: 'GET',
+                });
+
+                var flashcardData = await response.json();
+
+                document.getElementById("mainDisplayCard").innerText = flashcardData.term;
+                document.getElementById("backDisplayCard").innerText = flashcardData.definition;
+                document.getElementById("flashcardCount").innerText - "Flashcard Count: " + flashcardData.flashcardCount;
+            }   
+        }
+
+        function generateInputArea() {
+            var element = document.getElementById("termAndDefinitionArea");
+            element.innerHTML = "<div class=\"termAndDefinitionContainer\" > <label>TERM:<input type=\"text\" id=\"term\"></label><label>DEFINITION:<input type=\"text\" id=\"definition\"></label> \
+                <div class=\"createFlashcardButton bolDecor upshift\" id=\"submitButton\">+</div> \
+                <div class=\"createFlashcardButton bolDecor upshift\" id=\"cancelButton\">-</div></div>";
+        }
+
+        function hideInputArea() {
+            var element = document.getElementById("termAndDefinitionArea");
+            element.innerHTML = "";
+        }
+
+        function hideInputArae2(event) {
+            var element = event.target;
+            var element2 = document.getElementById("termAndDefinitionArea");
+            if(element.id == "cancelButton") {
+                element2.innerHTML = "";
+            }
+        }
+
+        function generateFlashcard(event) {
+            var element = event.target;
+            if(element.id == "submitButton") {
+                var term = document.getElementById("term").value;
+                var definition = document.getElementById("definition").value;
+                if(term.trim() == '' || definition.trim() == '') {
+                    window.alert("Please enter something into term and definition slots to create a flashcard.")
+                } else {
+                    var string = term + ":" + definition;
+                    console.log(string);
+                    updateFlashCardElement(); 
+                    addToDB();
+                    flashcardCount += 1;
+                    flashcardCountUpdate();
+                    generateInputArea();
+                    
+
+                }
+            }
+        }
+
+        function updateFlashCardElement() {
+            if(flashcardCount == 0) {
+                createFlashcardElement();
+            } else {
+                var element = document.getElementById("mainDisplayCard");
+                element.innerText = term.value;
+                var element2 = document.getElementById("backDisplayCard");
+                element2.innerText = definition.value;
+            }
+        }
+
+        function createFlashcardElement() {
+            var element = document.getElementById("flashcardPlace");
+            var element1 = document.createElement("div");
+            element1.setAttribute("class", "flip-card-inner");
+            element1.setAttribute("id", "innerCard");
+            element.appendChild(element1);
+            var element2 = document.createElement("div");
+            element2.setAttribute("class", "flip-card-front ");
+            element2.setAttribute("id", "mainDisplayCard")
+            element2.innerText = term.value;
+            element1.appendChild(element2);
+
+            var element3 = document.createElement("div");
+            element3.setAttribute("class", "flip-card-back");
+            element3.setAttribute("id", "backDisplayCard");
+            element3.innerText = definition.value;
+            element1.appendChild(element3);
+        }
+
+        function flashcardCountUpdate() {
+            var element = document.getElementById("flashcardCount");
+            element.innerText = "Flashcard Count: " + flashcardCount;
+        }
+
+        async function clearCollection() {
+            if(flashcardCount > 0) {
+                var element = document.getElementById("innerCard");
+                element.remove();
+                flashcardCount = 0;
+                flashcardCountUpdate();
+
+                var response = await fetch('/delete_collection', {
+                    method: 'GET',
+                });
+
+            }
+        }
+
+        var inputArea = document.getElementById("createButton");
+        inputArea.addEventListener("click", generateInputArea);
+        document.addEventListener("click", hideInputArae2);
+        document.addEventListener("click", generateFlashcard);
+        var clearCollect = document.getElementById("clearButton");
+        clearCollect.addEventListener("click", clearCollection);
+        document.addEventListener("keyup", scrollFlashcard);
+        
+
+
+    </script>
+</html>

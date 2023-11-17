@@ -1,0 +1,74 @@
+<!-- chat.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', path='styles/public_chat_style.css') }}">
+    <title>Private Chat</title>
+</head>
+<body>
+    <div class="top-bar">
+        <p><img src="{{url_for('static',path = 'images/se-logo.png')}}"></p>
+        <nav>
+            <ul>
+                <a href="/"><li>Home</li></a>
+                <a href="/flashcard"><li>Flashcard</li></a>
+                <a href="/forum"><li>Forum</li></a>
+                <a href="/chat"><li>Chat</li></a>
+                <a href="/office-of-the-registra"><li>Office of the Registra</li></a>
+            </ul>
+        </nav>
+    </div>
+    <div class="main-body">
+        <h2 id="username"> {{ username }}</h2>
+        
+        <p id="incoming-messages-label"> Incoming messages</p>
+        <p id="incoming-messages">
+            <span id="sender-text">
+            {% for message in messages %}
+                {{ message['sender'] }}
+            </span>
+
+            <span id="message-text">
+                : {{ message['message'] }} <br>
+            {% endfor %}
+            </span>
+        </p>
+        <div class="send-message">
+
+            <input type="text" id="message-input" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+        <h1></h1>
+        <h1></h1>
+        <h1></h1>
+    </div>
+    
+    <script>
+        var username = document.getElementById("username").innerHTML;
+        var socket = new WebSocket(`ws://localhost:8000/public-chat/${username}`);
+
+        socket.onopen = () => console.log("WebSocket opened");
+        socket.onclose = () => console.log("WebSocket closed");
+        socket.onerror = (error) => console.error("WebSocket error", error);
+
+
+        socket.onmessage = function(event) {
+            var messages = document.getElementById('incoming-messages')
+            var message = document.createElement('li')
+            var content = document.createTextNode(event.data)
+            message.appendChild(content)
+            messages.appendChild(message)
+        };
+        
+        function sendMessage(event) {
+            var input = document.getElementById("message-input")
+            if (input.value.trim() != "") {
+                socket.send(input.value)
+                input.value = ''
+            }
+        }
+    </script>
+</body>
+</html>

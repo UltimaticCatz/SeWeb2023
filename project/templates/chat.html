@@ -1,0 +1,61 @@
+<!-- chat.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', path='styles/chat_style.css') }}">
+    <title>FastAPI Chat</title>
+</head>
+<body>
+    <div class="top-bar">
+        <p><img src="{{url_for('static',path = 'images/se-logo.png')}}"></p>
+        <nav>
+            <ul>
+                <a href="/"><li>Home</li></a>
+                <a href="/flashcard"><li>Flashcard</li></a>
+                <a href="/forum"><li>Forum</li></a>
+                <a href="/chat"><li>Chat</li></a>
+                <a href="/office-of-the-registra"><li>Office of the Registra</li></a>
+            </ul>
+        </nav>
+    </div>
+    <div class="main-body">
+        <h1> Chat </h1>
+        <p> What is your username? </p>
+        <p> <input type="text" id="username-input"> </p> 
+        <nav>
+            <ul>
+                <a id="private-chat"><li>Private chat<p>Chat with someone specific</p></li></a>
+                <a id="public-chat"><li>Public chat<p>Chat with everyone</p></li></a>
+            </ul>
+        </nav>
+        <h1></h1>
+    </div>
+    
+    <script>
+        const privateChat = document.getElementById("private-chat");
+        privateChat.addEventListener("click", redirectToPrivateChat )
+
+
+        function redirectToPrivateChat() {
+            const usernameInput = document.getElementById('username-input').value;
+            if (usernameInput.trim() != "") {
+                window.location.href = `/chat/private-chat?username=${usernameInput}`;
+            }
+        }
+
+
+        const publicChat = document.getElementById("public-chat");
+        publicChat.addEventListener("click", redirectToPublicChat);
+
+        function redirectToPublicChat() {
+            const usernameInput = document.getElementById('username-input').value;
+            if (usernameInput.trim() != "") {
+                window.location.href = `/chat/public-chat?username=${usernameInput}`;
+            }
+        }
+        
+    </script>
+</body>
+</html>

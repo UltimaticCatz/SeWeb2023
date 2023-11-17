@@ -1,0 +1,190 @@
+:root {
+    --main_font: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";
+}
+
+body {
+    background-color: rgb(39, 39, 158);
+    border-left: auto;
+    border-right: auto;
+}
+
+.top-bar {
+    font-family: var(--main_font);
+    background-color: #1f2937; 
+    position: fixed; 
+    width: 100%; 
+    top: 0; 
+    left: 0;
+    z-index: 1000; 
+    display: flex;
+    align-items: center;
+    transition: opacity 0.5s ease; 
+    border-bottom: 2px solid black;
+    
+}
+
+.top-bar img {
+    width: 4vw; 
+    height: auto; 
+    margin-right: 10px;
+    margin-left: 10vw;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    padding: 2vw;
+    border-radius: 10%;
+    transition: background-color 0.15s linear;
+}
+
+nav ul li:hover {
+    background-color: #2A384B
+}
+nav a {
+    text-decoration: none;
+    color: rgb(255,255,245,0.86);
+}
+
+
+
+
+
+
+h1 {
+    color: yellow;
+    text-align: center;
+}
+
+.flip-card {
+    background-color: transparent;
+    perspective: 1000px;
+    width: 100%;
+    height: 100%;
+    
+    
+}
+
+.flip-card-inner {
+    display: relative;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: white;
+    color: black;
+    width: 50%;
+    border-radius: 25px;
+    border-color: white;
+    padding: 20px;
+    font-size: 30px;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    display: absolute;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    background-color: white;
+    color: black;
+    text-align: center;
+    font-size: 30px;
+}
+
+.flip-card-front {
+    background-color: white;
+    color: black;
+}
+
+.flip-card-back {
+    background-color: white;
+    color: black;
+    transform: rotateY(180deg);
+}
+
+.flashcardHolder {
+    background-color: rgb(26, 118, 210);
+    color: yellow;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    border-color: rgb(26, 118, 210);
+    border-radius: 25px;
+    padding: 5px;
+}
+
+.createFlashcardButton {
+    background-color:rgb(22, 71, 185);
+    color: yellow;
+    font-size: 150%;
+    margin-left: 10%;
+    display: inline-block;
+    width: 20%;
+    text-align: center;
+    border-color: rgb(87, 55, 232);
+    border-radius: 25px;
+    padding: 10px;
+}
+
+.createFlashcardButton:hover {
+    background-color: rgb(87, 55, 232);
+    cursor: pointer;
+}
+
+input {
+    padding: 10px;
+}
+    
+
+label {
+    color: yellow;
+    margin-right: 5%;
+}
+
+.termAndDefinitionContainer {
+    background-color: rgb(26, 118, 210);
+    margin-left: 10%;
+    margin-right: 40%;
+    font-size: 20px;
+    width: 40%;
+    border-color: rgb(26, 118, 210);
+    border-radius: 25px;
+    padding: 20px;
+}
+
+.boldDecor {
+    font-weight: bold;
+}
+
+.upshift {
+    margin-top: 5%;
+    margin-right: 10%;
+}
+
+.flashcard {
+    background-color: white;
+    color: black;
+    width: 50%;
+    border-radius: 25px;
+    border-color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 30px;
+
+}
+
+.flashcardDisplayCenter {
+    display: flex;
+    align-items:center;
+    justify-content: center;
+
+}
+
+

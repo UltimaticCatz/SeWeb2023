@@ -1,0 +1,197 @@
+:root {
+    --main_font: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";
+}
+
+body {
+    margin: 0;
+    font-family: var(--base_font);
+}
+
+
+.top-bar {
+    font-family: var(--main_font);
+    background-color: #1f2937; 
+    position: fixed; 
+    width: 100%; 
+    top: 0; 
+    left: 0;
+    z-index: 1000; 
+    display: flex;
+    align-items: center;
+    transition: opacity 0.5s ease; 
+    border-bottom: 2px solid black;
+    
+}
+
+.top-bar img {
+    width: 4vw; 
+    height: auto; 
+    margin-right: 10px;
+    margin-left: 10vw;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    padding: 2vw;
+    border-radius: 20px;
+    transition: background-color 0.15s linear;
+}
+
+nav ul li:hover {
+    background-color: #2A384B;
+    cursor: pointer;
+}
+nav a {
+    text-decoration: none;
+    color: rgb(255,255,245,0.86);
+}
+
+.main-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 7.5vh;
+    background-color: #161e2d;
+    font-family: var(--main_font);
+    
+}
+.main-body h1 {
+    color:#809ff9;
+    font-size: 4vw;
+    margin-top: 20vh;
+}
+
+.main-body h2 {
+    color: #92edae;
+    font-size: 3vw;
+    margin-left: -65vw;
+}
+
+.main-body p {
+    color: #9ca3af;
+    
+    line-height: 1.5em;
+    font-size: 1.2vw;
+    
+}
+
+#username-input {
+    margin-top: -1vh;
+    background-color: #212C42;
+    border: 0px;
+    outline: none;
+    width: 10vw;
+    height: 3vh;
+    transition: background-color 0.5s linear;
+    color: rgb(255,255,245,0.86);
+}
+
+#username-input:focus {
+    
+    background-color: #354769;
+}
+
+
+.main-body nav ul {
+    margin-top: 15vh;
+}
+.main-body nav ul li {
+    
+    font-size: 2vw;
+    width: 90vw;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #23355E;
+}
+
+.post {
+    
+    display:block;
+}
+
+.post h2 {
+    position: relative;
+    color: #8aeba7;
+    margin-left: 0vw;
+    min-width: 30vw;
+    top: 100;
+}
+
+.post p {
+    position: relative;
+    margin-left: 5vw;
+}
+
+.post h3 {
+    position: relative;
+    left: 10vw;
+    color:#83b4ff;
+    font-size: 0.5em;
+    right: 0;
+    max-width: 15vw;
+}
+
+img {
+    max-width: 30vw;
+    height: auto;
+
+}
+
+.comment-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #283750;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.comment-input {
+    flex: 1;
+    width: 50vw;
+    padding: 8px;
+    border: 0;
+    outline: none;
+    border-radius: 4px;
+    margin-right: 10px;
+    background-color: #405881;
+    color: #ffffff;
+}
+
+
+.send-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.comments ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    height: 20vh;
+
+    color: rgb(255,255,245,0.86);
+    line-height: 2.5;
+}
+
+.comments li {
+    font-size: 1.5em;
+    background-color: #1d273a;
+    margin-bottom: 3vh;
+    border-radius: 10px;
+    text-align: center;
+    width: 80vw;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Welcome to SE Planet </title>
+        <link href="{{url_for('static', path='styles/home_style.css')}}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="top-bar">
+            <p><img src="{{url_for('static',path = 'images/se-logo.png')}}"></p>
+            <nav>
+                <ul>
+                    <a href="/"><li>Home</li></a>
+                    <a href="/flashcard"><li>Flashcard</li></a>
+                    <a href="/forum"><li>Forum</li></a>
+                    <a href="/chat"><li>Chat</li></a>
+                    <a href="/office-of-the-registra"><li>Office of the Registra</li></a>
+                </ul>
+            </nav>
+        </div>
+        <div class="main-body">
+                <h1>Welcome to SE Planet</h1>
+                <p> A place where Software Engineers live and learn </p>
+            
+                    <h2 style="margin-top: 40vh;"> About </h2>
+                    <p style=" margin-left: -35vw; margin-top: -1vh; max-width: 35vw;">  
+                        SE Planet aims to centralize SE students into one place, to gather around and hang out 
+                        or share information about academic studies.
+                    </p>
+                
+        </div>
+        
+    </body>
+</html>

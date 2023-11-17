@@ -1,0 +1,119 @@
+:root {
+    --main_font: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";
+}
+
+body {
+    margin: 0;
+    font-family: var(--base_font);
+}
+
+
+.top-bar {
+    font-family: var(--main_font);
+    background-color: #1f2937; 
+    position: fixed; 
+    width: 100%; 
+    top: 0; 
+    left: 0;
+    z-index: 1000; 
+    display: flex;
+    align-items: center;
+    transition: opacity 0.5s ease; 
+    border-bottom: 2px solid black;
+    
+}
+
+.top-bar img {
+    width: 4vw; 
+    height: auto; 
+    margin-right: 10px;
+    margin-left: 10vw;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    padding: 2vw;
+    border-radius: 10%;
+    transition: background-color 0.15s linear;
+}
+
+nav ul li:hover {
+    background-color: #2A384B;
+    cursor: pointer;
+}
+nav a {
+    text-decoration: none;
+    color: rgb(255,255,245,0.86);
+}
+
+.main-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 7.5vh;
+    background-color: #161e2d;
+    font-family: var(--main_font);
+    
+}
+.main-body h1 {
+    color:#809ff9;
+    font-size: 4vw;
+    margin-top: 20vh;
+}
+
+.main-body h2 {
+    color: #92edae;
+    font-size: 3vw;
+    margin-left: -65vw;
+}
+
+.main-body p {
+    color: #747a83;
+    
+    line-height: 1.5em;
+    font-size: 1.2vw;
+    
+}
+
+.office-list {
+    display: flex;
+    flex-direction: row;
+    font-size: 1.5vw; 
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.office-list ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: space-between;
+    max-width: 65vw;
+}
+
+.office-list nav ul li {
+    display: flex;
+    border-radius: 5%;
+    padding: 3vh;
+    font-size: 1.25em;
+}
+
+.office-list nav ul li p{
+    display: absolute;
+    margin-left: -1.5vw;
+    margin-top: 3vw;
+    max-width: 10vw;
+    font-size: 0.5em
+} 
+
+.office-list nav ul li:hover {
+    background-color: #232F46;
+}

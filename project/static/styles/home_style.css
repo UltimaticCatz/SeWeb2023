@@ -1,0 +1,81 @@
+:root {
+    --main_font: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";
+}
+
+body {
+    margin: 0;
+    font-family: var(--base_font);
+}
+
+
+.top-bar {
+    font-family: var(--main_font);
+    background-color: #1f2937; /* Set the background color of the top bar */
+    position: fixed; /* Set the position to fixed */
+    width: 100%; /* Make it span the entire width of the viewport */
+    top: 0; /* Stick it to the top of the viewport */
+    left: 0;
+    z-index: 1000; /* Set a higher z-index to ensure it's on top of other content */
+    display: flex;
+    align-items: center;
+    transition: opacity 0.5s ease; /* Add a transition for the opacity property */
+    border-bottom: 2px solid black;
+    
+}
+
+.top-bar img {
+    width: 4vw; /* Set the desired width */
+    height: auto; /* Let the browser maintain the aspect ratio */
+    margin-right: 10px;
+    margin-left: 10vw;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    padding: 2vw;
+    border-radius: 10%;
+    transition: background-color 0.15s linear;
+}
+
+nav ul li:hover {
+    background-color: #2A384B
+}
+nav a {
+    text-decoration: none;
+    color: rgb(255,255,245,0.86);
+}
+
+.main-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 7.5vh;
+    background-color: #161e2d;
+    font-family: var(--main_font);
+    
+}
+.main-body h1 {
+    color:#809ff9;
+    font-size: 4vw;
+    margin-top: 20vh;
+}
+
+.main-body h2 {
+    color: #92edae;
+    font-size: 3vw;
+    margin-left: -65vw;
+}
+
+.main-body p {
+    color: #9ca3af;
+    
+    line-height: 1.5em;
+    font-size: 1.2vw;
+    
+}
